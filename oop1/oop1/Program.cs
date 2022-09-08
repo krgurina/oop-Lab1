@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Text;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace oop1
 {
@@ -10,7 +8,7 @@ namespace oop1
     {
         static void Main(string[] args)
         {
-            --------------ТИПЫ---------------- -
+            //--------------ТИПЫ---------------- -
             //1a
             bool testBool = true;
             Console.WriteLine("bool = " + testBool);
@@ -50,7 +48,6 @@ namespace oop1
 
             Console.Write("ushort = ");
             ushort testUshort = Convert.ToUInt16(Console.ReadLine());
-
 
 
             //1b
@@ -123,14 +120,16 @@ namespace oop1
 
             Console.WriteLine($"Сцепление строк: {String.Concat(str11, str22)}");
             Console.WriteLine($"Копирование строки: {String.Copy(str22)}");
-            Console.WriteLine($"Выделение подстроки: {str33.Substring(11)}");
+            string substr = str33.Substring(11);
+            Console.WriteLine($"Выделение подстроки: {substr}");
             Console.WriteLine($"Разделение строки на слова: ");
             string[] strArr = str11.Split();
+
             for (int ind = 0; ind < strArr.Length; ind++)
             {
                 Console.WriteLine(strArr[ind]);
             }
-            Console.WriteLine($"Вставка подстроки в заданную позицию: {str22.Insert(4, str11)}");
+            Console.WriteLine($"Вставка подстроки в заданную позицию: {str22.Insert(4, substr)}");
             Console.WriteLine($"Удаление заданной подстроки: {str33.Remove(4)}");
 
             //2c
@@ -187,7 +186,7 @@ namespace oop1
             }
 
             //3c
-            double [][] jaggedArr = new double[3][];
+            double[][] jaggedArr = new double[3][];
             jaggedArr[0] = new double[2];
             jaggedArr[1] = new double[3];
             jaggedArr[2] = new double[4];
@@ -205,7 +204,7 @@ namespace oop1
             }
 
             Console.WriteLine();
-            for (int i  = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 jaggedArr[2][i] = Convert.ToDouble(Console.ReadLine());
             }
@@ -220,12 +219,14 @@ namespace oop1
                 }
                 Console.WriteLine();
             }
+
             //3d
 
             var vArr = new object[0];
             var vstr = "";
 
             //--------------Кортежи-----------------
+
             //4a
             (int, string, char, string, ulong) tuple = (12, "krrr", 'r', "black", 11111);
 
@@ -257,6 +258,7 @@ namespace oop1
 
 
             //--------------Функции-----------------
+
             (int, int, int, char) LocalFunction(int[] numbers, string str1)
             {
                 int maxNumber = numbers.Max();
@@ -271,8 +273,35 @@ namespace oop1
 
             int[] arrToFunc = new int[] { 18, 27, 3, 54 };
             string srtToFunc = "мяу";
+
             Console.WriteLine(LocalFunction(arrToFunc, srtToFunc));
-          
+
+
+            //--------------Работа с checked/ unchecked:-----------------
+
+            int add = 100;
+            int localfunction2()
+            {
+                int maxInt = Int32.MaxValue;
+                unchecked
+                {
+                    maxInt = maxInt + add;
+                    Console.WriteLine(maxInt);
+                }
+                return maxInt;
+            }
+            int localfunction1()
+            {
+                int maxInt = Int32.MaxValue;
+                checked
+                {
+                    maxInt = maxInt + add;
+                    Console.WriteLine(maxInt);
+                }
+                return maxInt;
+            }
+            localfunction2();//выведется это
+            localfunction1();
 
         }
     }
