@@ -10,49 +10,47 @@ namespace oop1
     {
         static void Main(string[] args)
         {
-            //--------------ТИПЫ-----------------
+            --------------ТИПЫ---------------- -
             //1a
-            bool a1 = true;
-            Console.WriteLine("bool = " + a1);
+            bool testBool = true;
+            Console.WriteLine("bool = " + testBool);
 
             Console.Write("byte = ");
-            byte a2 = Convert.ToByte(Console.ReadLine());
-            //Console.WriteLine(a2);
+            byte testByte = Convert.ToByte(Console.ReadLine());
 
             Console.Write("sbyte = ");
-            sbyte a3 = Convert.ToSByte(Console.ReadLine());
-           // Console.WriteLine(a3);
+            sbyte testSbyte = Convert.ToSByte(Console.ReadLine());
 
             Console.Write("char = ");
-            char a4 = Convert.ToChar(Console.ReadLine()); ;
+            char testChar = Convert.ToChar(Console.ReadLine()); ;
 
             Console.Write("decimal = ");
-            decimal a5 = Convert.ToDecimal(Console.ReadLine());
+            decimal testDecimal = Convert.ToDecimal(Console.ReadLine());
 
             Console.Write("double = ");
-            double a6 = Convert.ToDouble(Console.ReadLine());
+            double testDouble = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("float = ");
-            float a7 = Convert.ToByte(Console.ReadLine());
+            float testFloat = Convert.ToByte(Console.ReadLine());
 
             Console.Write("int = ");
-            int a8 = Convert.ToInt32(Console.ReadLine());
+            int testInt = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("uint = ");
-            uint a9 = Convert.ToUInt32(Console.ReadLine());
+            uint testUint = Convert.ToUInt32(Console.ReadLine());
 
             Console.WriteLine("long = ");
-            long a10 = Convert.ToInt64(Console.ReadLine());
+            long testLong = Convert.ToInt64(Console.ReadLine());
 
             Console.Write("ulong = ");
-            ulong a11 = Convert.ToUInt64(Console.ReadLine());
+            ulong testUlong = Convert.ToUInt64(Console.ReadLine());
 
             Console.Write("short = ");
-            short a12 = Convert.ToInt16(Console.ReadLine());
+            short testShort = Convert.ToInt16(Console.ReadLine());
 
             Console.Write("ushort = ");
-            ushort a13 = Convert.ToUInt16(Console.ReadLine());
-            
+            ushort testUshort = Convert.ToUInt16(Console.ReadLine());
+
 
 
             //1b
@@ -147,21 +145,21 @@ namespace oop1
             Console.WriteLine($"Сцепление: {String.Concat(emtstr, nullstr)}");
 
             //2d
-            StringBuilder ww = new StringBuilder("rrkkkkrrrr", 7);
-            ww.Remove(2, 4);
-            ww.Insert(0, str33.Substring(11));
-            ww.Append("end");
-            Console.WriteLine($"StringBuilder: {ww}");
+            StringBuilder testStr = new StringBuilder("rrkkkkrrrr", 7);
+            testStr.Remove(2, 4);
+            testStr.Insert(0, str33.Substring(11));
+            testStr.Append("end");
+            Console.WriteLine($"StringBuilder: {testStr}");
 
             //--------------МАССИВЫ-----------------
             //3a
-            int[,] arr2d = { { 1, 1, 1 }, { 0, 0, 0 }, { 1, 0, 1 } };
+            int[,] matrix = { { 1, 1, 1 }, { 0, 0, 0 }, { 1, 0, 1 } };
             
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.Write($"{arr2d[i, j]} \t");
+                    Console.Write($"{matrix[i, j]} \t");
                 }
                 Console.WriteLine();
             }
@@ -189,33 +187,32 @@ namespace oop1
             }
 
             //3c
-            double [][] arr = new double[3][];
-            arr[0] = new double[2];
-            arr[1] = new double[3];
-            arr[2] = new double[4];
+            double [][] jaggedArr = new double[3][];
+            jaggedArr[0] = new double[2];
+            jaggedArr[1] = new double[3];
+            jaggedArr[2] = new double[4];
 
             Console.WriteLine("Заполните ступенчатый массив: ");
             for (int i = 0; i < 2; i++)
             {
-                arr[0][i] = Convert.ToDouble(Console.ReadLine());
-                //Console.Write("{0}\t", arr[0][i]);
+                jaggedArr[0][i] = Convert.ToDouble(Console.ReadLine());
             }
 
             Console.WriteLine();
             for (int i = 0; i < 3; i++)
             {
-                arr[1][i] = Convert.ToDouble(Console.ReadLine());
+                jaggedArr[1][i] = Convert.ToDouble(Console.ReadLine());
             }
 
             Console.WriteLine();
             for (int i  = 0; i < 4; i++)
             {
-                arr[2][i] = Convert.ToDouble(Console.ReadLine());
+                jaggedArr[2][i] = Convert.ToDouble(Console.ReadLine());
             }
 
 
 
-            foreach (double[] row in arr)
+            foreach (double[] row in jaggedArr)
             {
                 foreach (double number in row)
                 {
@@ -228,8 +225,55 @@ namespace oop1
             var vArr = new object[0];
             var vstr = "";
 
-   
-            
+            //--------------Кортежи-----------------
+            //4a
+            (int, string, char, string, ulong) tuple = (12, "krrr", 'r', "black", 11111);
+
+            //4b
+            Console.WriteLine(tuple);
+            Console.WriteLine(tuple.Item1);
+            Console.WriteLine(tuple.Item3);
+            Console.WriteLine(tuple.Item5);
+
+            //4c
+            // (int age, string name, char letter, string color, ulong userNumber) = tuple;
+            //(var age, var name, var letter, var color, var userNumber) = tuple;
+            var (age, name, letter, color, userNumber) = tuple;
+
+            (int age2, string name2, _, string color2, ulong userNumber2) = tuple;
+
+
+            Console.WriteLine($"items: {age} {name}");
+
+            //4d
+            var tuple1ToCompare = (7, 27, 4, 85, 6, 7, 5);
+            var tuple2ToCompare = (7, 27, 4, 85, 5, 7, 5);
+            if (tuple1ToCompare == tuple2ToCompare)
+            {
+                Console.WriteLine("true");
+            }
+            else
+            { Console.WriteLine("false"); }
+
+
+            //--------------Функции-----------------
+            (int, int, int, char) LocalFunction(int[] numbers, string str1)
+            {
+                int maxNumber = numbers.Max();
+                int minNumber = numbers.Min();
+                int sumNumber = numbers.Sum();
+
+                char frstSimbol = str1[0];
+
+                var tupleToFunc = (maxNumber, minNumber, sumNumber, frstSimbol);
+                return tupleToFunc;
+            }
+
+            int[] arrToFunc = new int[] { 18, 27, 3, 54 };
+            string srtToFunc = "мяу";
+            Console.WriteLine(LocalFunction(arrToFunc, srtToFunc));
+          
+
         }
     }
 }
